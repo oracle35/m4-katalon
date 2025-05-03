@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>Search_Input_Field</name>
+   <tag></tag>
+   <elementGuidId>7823bbcc-856a-4b66-91c3-e1b530d94a41</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value>input[data-testid='search-input-field']&#xd;
+</value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//input[@data-testid='search-input-field']&#xd;
+</value>
+      </entry>
+      <entry>
+         <key>BASIC</key>
+         <value></value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>CSS</selectorMethod>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>false</useRalativeImagePath>
+</WebElementEntity>
