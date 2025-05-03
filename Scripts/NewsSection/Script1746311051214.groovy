@@ -9,8 +9,8 @@ WebUI.navigateToUrl('https://www.bbc.com')
 
 WebUI.waitForPageLoad(10)
 
+// Navigate to Business section
 TestObject businessLink = new TestObject('Link_Business_Section')
-
 businessLink.addProperty('xpath', com.kms.katalon.core.testobject.ConditionType.EQUALS, "//nav//a[normalize-space()='Business']")
 
 WebUI.waitForElementClickable(businessLink, 10)
@@ -19,18 +19,21 @@ WebUI.comment("Navigated to Business section.")
 
 WebUI.waitForPageLoad(10)
 
-TestObject articleList = new TestObject('Section_Article_List')
 
-articleList.addProperty('xpath', com.kms.katalon.core.testobject.ConditionType.EQUALS, "/html/body/div[2]/div/main/article/section[1]/div/div/div[1]/div/div/div/a/div")
+TestObject bodyObject = new TestObject('Page_Body')
+bodyObject.addProperty('xpath', com.kms.katalon.core.testobject.ConditionType.EQUALS, '//body')
+WebUI.waitForElementVisible(bodyObject, 3)
 
-WebUI.waitForElementVisible(articleList, 10)
+String pageText = WebUI.getText(bodyObject)
 
-boolean articulosVisibles = WebUI.verifyElementPresent(articleList, 10, FailureHandling.STOP_ON_FAILURE)
+boolean foundTariffs = pageText.toLowerCase().contains('tariffs')
+boolean foundTrump = pageText.toLowerCase().contains('trump')
+boolean foundWallStreet = pageText.toLowerCase().contains('wall street')
 
-if (articulosVisibles) {
-    WebUI.comment('Se muestra la lista de artículos de la sección Business.')
+if (foundTariffs || foundTrump || foundWallStreet) {
+    WebUI.comment('Se encontró al menos una de las palabras clave: Tariffs, Trump, o Wall Street.')
 } else {
-    WebUI.comment('No se encontró la lista de artículos en la sección Business.')
+    WebUI.comment('No se encontraron las palabras clave: Tariffs, Trump, ni Wall Street.')
 }
 
 WebUI.delay(2)

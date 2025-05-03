@@ -18,7 +18,6 @@ def realizarBusqueda(String terminoBusqueda) {
     WebUI.comment("Pressed Enter key to initiate search.")
 }
 
-// --- Caso 1: Buscar "cambio climático" y verificar que aparezcan artículos relacionados ---
 String searchTerm1 = "cambio climático"
 realizarBusqueda(searchTerm1)
 
