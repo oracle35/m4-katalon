@@ -18,21 +18,36 @@ import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 import com.kms.katalon.core.testobject.TestObject
 
-// 1. Open browser and navigate to BBC home
 WebUI.openBrowser('')
 WebUI.maximizeWindow()
 WebUI.navigateToUrl('https://www.bbc.com')
 
-// 2. Wait for the page to load
-WebUI.waitForPageLoad(10)
-
-// 3. Locate and click the Australia article link
 TestObject australiaLink = findTestObject('Link_Australia_Article')
-WebUI.waitForElementClickable(australiaLink, 3)
+WebUI.waitForElementClickable(australiaLink, 5)
 WebUI.click(australiaLink)
 WebUI.comment("Clicked the Australia article link.")
 
+WebUI.waitForPageLoad(10)
+TestObject articleContent = findTestObject('div_ArticleContent')
+WebUI.waitForElementVisible(articleContent, 10)
 
-// 6. Clean up
+boolean contenidoVisible = WebUI.verifyElementPresent(articleContent, 10, FailureHandling.STOP_ON_FAILURE)
+
+if (contenidoVisible) {
+    WebUI.comment('El contenido del artículo se muestra correctamente.')
+} else {
+    WebUI.comment('El contenido del artículo no se encontró.')
+}
+
+TestObject articleTitle = findTestObject('h1_ArticleTitle')
+boolean tituloVisible = WebUI.verifyElementPresent(articleTitle, 5, FailureHandling.CONTINUE_ON_FAILURE)
+
+if (tituloVisible) {
+    WebUI.comment('El título del artículo está visible.')
+} else {
+    WebUI.comment('El título del artículo no se encontró.')
+}
+
+
 WebUI.delay(2)
 WebUI.closeBrowser()
